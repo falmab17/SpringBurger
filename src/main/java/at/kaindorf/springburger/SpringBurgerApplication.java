@@ -3,7 +3,7 @@ package at.kaindorf.springburger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication // einmal notwendig
 public class SpringBurgerApplication {
 
     public static void main(String[] args) {
