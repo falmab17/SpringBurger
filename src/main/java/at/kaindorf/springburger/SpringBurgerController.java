@@ -5,16 +5,16 @@ import at.kaindorf.springburger.beans.Ingredient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 @Slf4j // loggen direkt auf die Spring Console weil sout bei spring unübersichtlich ist
 @Controller // Request Mapping möglich
 @RequestMapping("/design")// Definition für post u. get mapping
+@SessionAttributes("designBurger")
 public class SpringBurgerController {
     private List<Ingredient> ingredients = Arrays.asList(
                 new Ingredient("120B", "120g Ground Beef", Ingredient.Type.PATTY),
@@ -45,5 +45,11 @@ public class SpringBurgerController {
     public String showDesignForm() {
         log.info("getRequest /design"); // durch slf4j
         return "designForm"; // html Datei in resources/templates
+    }
+
+    @PostMapping
+    public String processBurger(@ModelAttribute("designBurger") Burger burger){
+        log.info("Burger: "+burger);
+        return "redirect:/orders/current"; // leitet weiter zu dem link nach redirect
     }
 }

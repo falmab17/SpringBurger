@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Burger</title>
+</head>
+<body>
+    <h1>Order your Burger</h1>
+    <form method="post" th:action="@{/orders}" th:objec="${order}">
+        Deliver
+        <span th:text="${designBurger.name}">NONAME</span> [
+        <span th:text="${#strings.listJoin(designburger.getIngredients(), ',')}">NONAME</span> ] to ...
+        <br>
+        <label for="name">Name</label>
+        <input id="name" type="text" th:field="*{name}">
+        <label for="street">Name</label>
+        <input id="street" type="text" th:field="*{name}">
+        <label for="city">Name</label>
+        <input id="city" type="text" th:field="*{name}">
+        <br/>
+        <input type="submit" value=""submit order>
+    </form>
+</body>
+</html>
